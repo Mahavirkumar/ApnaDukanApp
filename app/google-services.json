@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "939118185286",
+    "project_id": "apnadukan-1e70f",
+    "storage_bucket": "apnadukan-1e70f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939118185286:android:33c991899f5c7aad27f347",
+        "android_client_info": {
+          "package_name": "com.developer.mk.apnadukan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939118185286-tgigqlu5u122gf05dk5244renq6q7vtm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.developer.mk.apnadukan",
+            "certificate_hash": "a66231c77591b9b7fb2da4dd31d74aebe3bb916d"
+          }
+        },
+        {
+          "client_id": "939118185286-4u7chb2879je0fvi576o8g776lc3dc4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvMTMbm1JtHZe4xn6XKJn_yXbaBxh5Lbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939118185286-4u7chb2879je0fvi576o8g776lc3dc4m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
