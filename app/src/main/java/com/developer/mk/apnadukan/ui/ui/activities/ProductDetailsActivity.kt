@@ -3,6 +3,7 @@ package com.developer.mk.apnadukan.ui.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.developer.mk.apnadukan.R
 import com.developer.mk.apnadukan.firestore.FirestoreClass
 import com.developer.mk.apnadukan.models.Product
@@ -23,7 +24,19 @@ class ProductDetailsActivity : BaseActivity() {
                 intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
             Log.i("Product Id", mProductId)
         }
+        var productOwnerId: String = ""
+        if (intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
+            productOwnerId =
+                intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
+            Log.i("Product Id", productOwnerId)
+        }
         setupActionBar()
+
+        if (FirestoreClass().getCurrentUserID() == productOwnerId) {
+            btn_add_to_cart.visibility = View.GONE
+        } else {
+            btn_add_to_cart.visibility = View.VISIBLE
+        }
 
         getProductDetails()
     }
