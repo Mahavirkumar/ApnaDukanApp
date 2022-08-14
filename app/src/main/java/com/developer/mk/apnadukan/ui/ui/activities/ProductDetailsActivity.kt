@@ -83,7 +83,6 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     fun productDetailsSuccess(product: Product) {
 
         mProductDetails = product
-        hideProgressDialog()
 
         // Populate the product details in the UI.
         GlideLoader(this@ProductDetailsActivity).loadProductPicture(
@@ -95,6 +94,13 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         tv_product_details_price.text = "$${product.price}"
         tv_product_details_description.text = product.description
         tv_product_details_stock_quantity.text = product.stock_quantity
+
+        // There is no need to check the cart list if the product owner himself is seeing the product details.
+        if (FirestoreClass().getCurrentUserID() == product.user_id) {
+            hideProgressDialog()
+        } else {
+            FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+        }
     }
 
     override fun onClick(view: View?) {
@@ -130,6 +136,19 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     }
 
+    /**
+     * A function to notify the success result of item exists in the cart.
+     */
+    fun productExistsInCart() {
+
+        hideProgressDialog()
+
+        // Hide the AddToCart button if the item is already in the cart.
+        btn_add_to_cart.visibility = View.GONE
+        // Show the GoToCart button if the item is already in the cart. User can update the quantity from the cart list screen if he wants.
+        btn_go_to_cart.visibility = View.VISIBLE
+    }
+
     //  : Create a function to notify the success result of item added to the to cart.\
 
     fun addToCartSuccess() {
@@ -140,5 +159,8 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             resources.getString(R.string.success_message_item_added_to_cart),
             Toast.LENGTH_SHORT
         ).show()
+
+        btn_add_to_cart.visibility=View.GONE
+        btn_add_to_cart.visibility=View.VISIBLE
     }
 }
