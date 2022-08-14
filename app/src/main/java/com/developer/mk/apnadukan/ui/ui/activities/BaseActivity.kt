@@ -1,15 +1,16 @@
-package com.developer.mk.apnadukan.ui.activities
+package com.developer.mk.apnadukan.ui.ui.activities
 
 import android.app.Dialog
+import android.os.Handler
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.developer.mk.apnadukan.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.dialog_progress.*
 
 /**
- * A base activity class is used to define the functions and members which we will use in all the activities.
+ * A base activity class is used to define the functions and members which we will use in all the ui.
  * It inherits the AppCompatActivity class so in other activity class we will replace the AppCompatActivity with BaseActivity.
  */
 open class BaseActivity : AppCompatActivity() {
@@ -18,6 +19,9 @@ open class BaseActivity : AppCompatActivity() {
      * This is a progress dialog instance which we will initialize later on.
      */
     private lateinit var mProgressDialog: Dialog
+
+    // A global variable for double back press feature.
+    private var doubleBackToExitPressedOnce = false
 
     /**
      * A function to show the success and error messages in snack bar component.
@@ -69,5 +73,27 @@ open class BaseActivity : AppCompatActivity() {
      */
     fun hideProgressDialog() {
         mProgressDialog.dismiss()
+    }
+
+    /**
+     * A function to implement the double back press feature to exit the app.
+     */
+    fun doubleBackToExit() {
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+
+        Toast.makeText(
+            this,
+            resources.getString(R.string.please_click_back_again_to_exit),
+            Toast.LENGTH_SHORT
+        ).show()
+
+//        @Suppress("DEPRECATION")
+//        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 }

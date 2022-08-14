@@ -1,6 +1,5 @@
-package com.developer.mk.apnadukan.ui.activities
+package com.developer.mk.apnadukan.ui.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.developer.mk.apnadukan.R

@@ -1,7 +1,6 @@
-package com.developer.mk.apnadukan.ui.activities
+package com.developer.mk.apnadukan.ui.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -10,6 +9,7 @@ import android.view.WindowManager
 import com.developer.mk.apnadukan.R
 import com.developer.mk.apnadukan.firestore.FirestoreClass
 import com.developer.mk.apnadukan.models.User
+import com.developer.mk.apnadukan.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -130,8 +130,17 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
         Log.i("Last Name: ", user.lastName)
         Log.i("Email: ", user.email)
 
-        // Redirect the user to Main Screen after log in.
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        // Redirect the user to the UserProfile screen if it is incomplete otherwise to the Main screen.
+
+        if (user.profileCompleted == 0) {
+            // If the user profile is incomplete then launch the UserProfileActivity.
+            val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
+            startActivity(intent)
+        } else {
+            // Redirect the user to Main Screen after log in.
+            startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
+        }
         finish()
     }
 }
