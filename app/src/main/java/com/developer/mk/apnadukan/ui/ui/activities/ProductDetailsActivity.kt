@@ -4,16 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.developer.mk.apnadukan.R
 import com.developer.mk.apnadukan.firestore.FirestoreClass
+import com.developer.mk.apnadukan.models.CartItem
 import com.developer.mk.apnadukan.models.Product
 import com.developer.mk.apnadukan.utils.Constants
 import com.developer.mk.apnadukan.utils.GlideLoader
 import kotlinx.android.synthetic.main.activity_product_details.*
 
-class ProductDetailsActivity : BaseActivity() {
+class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     // A global variable for product id.
     private var mProductId: String = ""
+
+    private lateinit var mProductDetails: Product
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,8 @@ class ProductDetailsActivity : BaseActivity() {
         }
 
         getProductDetails()
+
+        btn_add_to_cart.setOnClickListener(this)
     }
 
     /**
@@ -76,7 +82,7 @@ class ProductDetailsActivity : BaseActivity() {
      */
     fun productDetailsSuccess(product: Product) {
 
-        // Hide Progress dialog.
+        mProductDetails = product
         hideProgressDialog()
 
         // Populate the product details in the UI.
@@ -89,5 +95,50 @@ class ProductDetailsActivity : BaseActivity() {
         tv_product_details_price.text = "$${product.price}"
         tv_product_details_description.text = product.description
         tv_product_details_stock_quantity.text = product.stock_quantity
+    }
+
+    override fun onClick(view: View?) {
+        if (view != null) {
+            when (view.id) {
+
+                R.id.btn_add_to_cart -> {
+                    addToCart()
+                }
+            }
+        }
+    }
+
+    /**
+     * A function to prepare the cart item to add it to the cart in cloud firestore.
+     */
+    private fun addToCart() {
+
+        val addToCart = CartItem(
+            FirestoreClass().getCurrentUserID(),
+            mProductId,
+            mProductDetails.title,
+            mProductDetails.price,
+            mProductDetails.image,
+            Constants.DEFAULT_CART_QUANTITY
+        )
+
+        // Call the function of Firestore class to add the cart item to the cloud firestore along with the required params.
+
+        showProgressDialog(resources.getString(R.string.please_wait))
+
+        FirestoreClass().addCartItems(this@ProductDetailsActivity, addToCart)
+
+    }
+
+    //  : Create a function to notify the success result of item added to the to cart.\
+
+    fun addToCartSuccess() {
+        hideProgressDialog()
+
+        Toast.makeText(
+            this@ProductDetailsActivity,
+            resources.getString(R.string.success_message_item_added_to_cart),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

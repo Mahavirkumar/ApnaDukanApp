@@ -15,6 +15,7 @@ object Constants {
     // This  is used for the collection name for USERS.
     const val USERS: String = "users"
     const val PRODUCTS: String = "products"
+    const val CART_ITEMS: String = "cart_items"
 
     const val APNADUKAN_PREFERENCES: String = "ApnaDukanPrefs"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
@@ -34,6 +35,8 @@ object Constants {
 
     const val MALE: String = "Male"
     const val FEMALE: String = "Female"
+
+    const val DEFAULT_CART_QUANTITY: String = "1"
 
     // Firebase database field names
     const val MOBILE: String = "mobile"
