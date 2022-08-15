@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.developer.mk.apnadukan.R
 import com.developer.mk.apnadukan.firestore.FirestoreClass
 import com.developer.mk.apnadukan.models.CartItem
@@ -97,11 +98,29 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         tv_product_details_description.text = product.description
         tv_product_details_stock_quantity.text = product.stock_quantity
 
-        // There is no need to check the cart list if the product owner himself is seeing the product details.
-        if (FirestoreClass().getCurrentUserID() == product.user_id) {
+        if(product.stock_quantity.toInt() == 0){
             hideProgressDialog()
-        } else {
-            FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+
+            // Hide the AddToCart button if the item is already in the cart.
+            btn_add_to_cart.visibility = View.GONE
+
+            tv_product_details_stock_quantity.text =
+                resources.getString(R.string.lbl_out_of_stock)
+
+            tv_product_details_stock_quantity.setTextColor(
+                ContextCompat.getColor(
+                    this@ProductDetailsActivity,
+                    R.color.colorSnackBarError
+                )
+            )
+        }else{
+
+            // There is no need to check the cart list if the product owner himself is seeing the product details.
+            if (FirestoreClass().getCurrentUserID() == product.user_id) {
+                hideProgressDialog()
+            } else {
+                FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+            }
         }
     }
 
@@ -166,6 +185,6 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         ).show()
 
         btn_add_to_cart.visibility=View.GONE
-        btn_add_to_cart.visibility=View.VISIBLE
+        btn_go_to_cart.visibility=View.VISIBLE
     }
 }
