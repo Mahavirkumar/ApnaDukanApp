@@ -150,6 +150,11 @@ class CartListActivity : BaseActivity() {
         }
     }
 
+    fun itemUpdateSuccess() {
+        hideProgressDialog()
+        getCartItemsList()
+    }
+
     /**
      * A function to notify the user about the item removed from the cart list.
      */

@@ -181,7 +181,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         Toast.makeText(
             this@ProductDetailsActivity,
             resources.getString(R.string.success_message_item_added_to_cart),
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_LONG
         ).show()
 
         btn_add_to_cart.visibility=View.GONE
