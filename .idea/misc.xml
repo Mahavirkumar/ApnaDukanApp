@@ -9,6 +9,7 @@
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/drawable_gender_tab_text_color_selector.xml" value="0.1535" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/ic_vector_add_photo.xml" value="0.1875" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/ic_vector_add_product.xml" value="0.1875" />
+        <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/ic_vector_cart.xml" value="0.149" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/ic_vector_chevron_right.xml" value="0.1605" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/ic_vector_delete.xml" value="0.187" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/ic_vector_edit.xml" value="0.152" />
@@ -21,10 +22,11 @@
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/user_image_background.xml" value="0.1535" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_add_product.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_base.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_cart_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_dash_board.xml" value="0.2" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_login.xml" value="0.17407407407407408" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_product_details.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_product_details.xml" value="0.2" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_settings.xml" value="0.16" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_user_profile.xml" value="0.25416666666666665" />

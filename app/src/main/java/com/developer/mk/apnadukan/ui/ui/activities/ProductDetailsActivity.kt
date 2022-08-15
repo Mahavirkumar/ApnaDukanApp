@@ -1,5 +1,6 @@
 package com.developer.mk.apnadukan.ui.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -45,6 +46,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         getProductDetails()
 
         btn_add_to_cart.setOnClickListener(this)
+        btn_go_to_cart.setOnClickListener(this)
     }
 
     /**
@@ -109,6 +111,9 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
                 R.id.btn_add_to_cart -> {
                     addToCart()
+                }
+                R.id.btn_go_to_cart -> {
+                    startActivity(Intent(this@ProductDetailsActivity, CartListActivity::class.java))
                 }
             }
         }
