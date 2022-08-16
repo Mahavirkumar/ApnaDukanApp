@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.developer.mk.apnadukan.models.Address
 import com.developer.mk.apnadukan.models.CartItem
 import com.developer.mk.apnadukan.models.Product
 import com.developer.mk.apnadukan.models.User
@@ -581,6 +582,34 @@ class FirestoreClass {
                 Log.e(
                     context.javaClass.simpleName,
                     "Error while removing the item from the cart list.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to add address to the cloud firestore.
+     *
+     * @param activity
+     * @param addressInfo
+     */
+    fun addAddress(activity: AddEditAddressActivity, addressInfo: Address) {
+
+        // Collection name addresses.
+        mFireStore.collection(Constants.ADDRESSES)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                // Here call a function of base activity for transferring the result to it.
+                activity.addUpdateAddressSuccess()
+
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while adding the address.",
                     e
                 )
             }
