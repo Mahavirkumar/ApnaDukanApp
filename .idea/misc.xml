@@ -21,9 +21,12 @@
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/ic_white_color_back_24dp.xml" value="0.1" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/item_dashboard_background.xml" value="0.187" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/item_grey_border_background.xml" value="0.1605" />
+        <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/item_primary_color_border_background.xml" value="0.147" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/rv_item_image_background.xml" value="0.187" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/drawable/user_image_background.xml" value="0.1535" />
+        <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_add_edit_address.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_add_product.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_address_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_base.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_cart_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Projects/Udemy Android Projects/ApnaDukanApp/app/src/main/res/layout/activity_dash_board.xml" value="0.2" />
