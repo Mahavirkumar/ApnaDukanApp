@@ -1,12 +1,16 @@
 package com.developer.mk.apnadukan.ui.ui.adapter
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.developer.mk.apnadukan.R
 import com.developer.mk.apnadukan.models.Address
+import com.developer.mk.apnadukan.ui.ui.activities.AddEditAddressActivity
+import com.developer.mk.apnadukan.utils.Constants
 import kotlinx.android.synthetic.main.item_address_layout.view.*
 
 class AddressListAdapter(
@@ -35,6 +39,20 @@ class AddressListAdapter(
 
     override fun getItemCount(): Int {
          return list.size
+    }
+
+    /**
+     * A function to edit the address details and pass the existing details through intent.
+     *
+     * @param activity
+     * @param position
+     */
+    fun notifyEditItem(activity: Activity, position: Int) {
+        val intent = Intent(context, AddEditAddressActivity::class.java)
+        //  Pass the address details through intent to edit the address.
+        intent.putExtra(Constants.EXTRA_ADDRESS_DETAILS, list[position])
+        activity.startActivity(intent)
+        notifyItemChanged(position) // Notify any registered observers that the item at position has changed.
     }
 
     /**
