@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.developer.mk.apnadukan.R
 import com.developer.mk.apnadukan.models.Address
 import com.developer.mk.apnadukan.ui.ui.activities.AddEditAddressActivity
+import com.developer.mk.apnadukan.ui.ui.activities.CheckoutActivity
 import com.developer.mk.apnadukan.utils.Constants
 import kotlinx.android.synthetic.main.item_address_layout.view.*
 
@@ -40,14 +41,13 @@ class AddressListAdapter(
             // Assign the click event to the address item when user is about to select the address.
             if (selectAddress) {
                 holder.itemView.setOnClickListener {
-                    Toast.makeText(
-                        context,
-                        "Selected address : ${model.address}, ${model.zipCode}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+
+                    val intent = Intent(context, CheckoutActivity::class.java)
+                    intent.putExtra(Constants.EXTRA_SELECTED_ADDRESS, model)
+                    context.startActivity(intent)
                 }
-            }
         }
+    }
     }
 
     override fun getItemCount(): Int {
