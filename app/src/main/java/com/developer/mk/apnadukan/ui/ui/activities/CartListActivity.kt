@@ -1,5 +1,6 @@
 package com.developer.mk.apnadukan.ui.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import com.developer.mk.apnadukan.firestore.FirestoreClass
 import com.developer.mk.apnadukan.models.CartItem
 import com.developer.mk.apnadukan.models.Product
 import com.developer.mk.apnadukan.ui.ui.adapter.CartItemsListAdapter
+import com.developer.mk.apnadukan.utils.Constants
 import kotlinx.android.synthetic.main.activity_cart_list.*
 
 class CartListActivity : BaseActivity() {
@@ -26,6 +28,12 @@ class CartListActivity : BaseActivity() {
         setContentView(R.layout.activity_cart_list)
 
         setupActionBar()
+
+        btn_checkout.setOnClickListener {
+            val intent = Intent(this@CartListActivity, AddressListActivity::class.java)
+            intent.putExtra(Constants.EXTRA_SELECT_ADDRESS, true)
+            startActivity(intent)
+        }
     }
 
     /**

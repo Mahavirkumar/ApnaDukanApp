@@ -28,11 +28,16 @@ object Constants {
 
     const val EXTRA_ADDRESS_DETAILS: String = "AddressDetails"
 
+    const val EXTRA_SELECT_ADDRESS: String = "extra_select_address"
+
+
     //A unique code for asking the Read Storage Permission using this we will be check and identify in the method onRequestPermissionsResult in the Base Activity.
     const val READ_STORAGE_PERMISSION_CODE = 2
 
     // A unique code of image selection from Phone Storage.
     const val PICK_IMAGE_REQUEST_CODE = 2
+
+    const val ADD_ADDRESS_REQUEST_CODE: Int = 121
 
     const val MALE: String = "Male"
     const val FEMALE: String = "Female"
