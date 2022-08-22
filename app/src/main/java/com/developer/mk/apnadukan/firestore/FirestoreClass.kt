@@ -6,10 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
-import com.developer.mk.apnadukan.models.Address
-import com.developer.mk.apnadukan.models.CartItem
-import com.developer.mk.apnadukan.models.Product
-import com.developer.mk.apnadukan.models.User
+import com.developer.mk.apnadukan.models.*
 import com.developer.mk.apnadukan.ui.ui.activities.*
 import com.developer.mk.apnadukan.ui.ui.fragments.DashboardFragment
 import com.developer.mk.apnadukan.ui.ui.fragments.ProductsFragment
@@ -721,6 +718,35 @@ class FirestoreClass {
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while deleting the address.",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to place an order of the user in the cloud firestore.
+     *
+     * @param activity base class
+     * @param order Order Info
+     */
+    fun placeOrder(activity: CheckoutActivity, order: Order) {
+
+        mFireStore.collection(Constants.ORDERS)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(order, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.orderPlacedSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                // Hide the progress dialog if there is any error.
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while placing an order.",
                     e
                 )
             }
