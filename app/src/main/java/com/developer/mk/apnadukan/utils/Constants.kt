@@ -61,6 +61,7 @@ object Constants {
     const val PRODUCT_IMAGE: String = "Product_Image"
 
     const val CART_QUANTITY: String = "cart_quantity"
+    const val STOCK_QUANTITY: String = "stock_quantity"
 
     const val COMPLETE_PROFILE: String = "profileCompleted"
 

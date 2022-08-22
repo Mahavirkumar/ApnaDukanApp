@@ -185,6 +185,12 @@ class CheckoutActivity : BaseActivity() {
 
     }
     fun orderPlacedSuccess() {
+        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemsList)
+    }
+    /**
+     * A function to notify the success result after updating all the required details.
+     */
+    fun allDetailsUpdatedSuccessfully() {
 
         hideProgressDialog()
 
