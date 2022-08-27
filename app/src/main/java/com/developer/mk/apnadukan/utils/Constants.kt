@@ -31,6 +31,7 @@ object Constants {
     const val EXTRA_SELECT_ADDRESS: String = "extra_select_address"
 
     const val EXTRA_SELECTED_ADDRESS: String = "extra_selected_address"
+    const val EXTRA_MY_ORDER_DETAILS: String = "extra_MY_ORDER_DETAILS"
 
 
     //A unique code for asking the Read Storage Permission using this we will be check and identify in the method onRequestPermissionsResult in the Base Activity.

@@ -17,6 +17,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.ui.activities.MyOrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.ui.activities.AddEditAddressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

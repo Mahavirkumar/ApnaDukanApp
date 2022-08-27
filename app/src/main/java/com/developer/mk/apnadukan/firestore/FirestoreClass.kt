@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.developer.mk.apnadukan.models.*
 import com.developer.mk.apnadukan.ui.ui.activities.*
 import com.developer.mk.apnadukan.ui.ui.fragments.DashboardFragment
+import com.developer.mk.apnadukan.ui.ui.fragments.OrdersFragment
 import com.developer.mk.apnadukan.ui.ui.fragments.ProductsFragment
 import com.developer.mk.apnadukan.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -795,6 +796,36 @@ class FirestoreClass {
 
             Log.e(activity.javaClass.simpleName, "Error while updating all the details after order placed.", e)
         }
+    }
+
+    /**
+     * A function to get the list of orders from cloud firestore.
+     */
+    fun getMyOrdersList(fragment: OrdersFragment) {
+        mFireStore.collection(Constants.ORDERS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                Log.e(fragment.javaClass.simpleName, document.documents.toString())
+                val list: ArrayList<Order> = ArrayList()
+
+                for (i in document.documents) {
+
+                    val orderItem = i.toObject(Order::class.java)!!
+                    orderItem.id = i.id
+
+                    list.add(orderItem)
+                }
+
+                fragment.populateOrdersListInUI(list)
+            }
+            .addOnFailureListener { e ->
+                // Here call a function of base activity for transferring the result to it.
+
+                fragment.hideProgressDialog()
+
+                Log.e(fragment.javaClass.simpleName, "Error while getting the orders list.", e)
+            }
     }
 
 }
