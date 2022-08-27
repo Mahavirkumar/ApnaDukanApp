@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_product_details.*
 class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     // A global variable for product id.
     private var mProductId: String = ""
+    private var mProductOwnerId: String = ""
 
     private lateinit var mProductDetails: Product
 
@@ -30,15 +31,14 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
                 intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
             Log.i("Product Id", mProductId)
         }
-        var productOwnerId: String = ""
         if (intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
-            productOwnerId =
+            mProductOwnerId =
                 intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
-            Log.i("Product Id", productOwnerId)
+            Log.i("Product Id", mProductOwnerId)
         }
         setupActionBar()
 
-        if (FirestoreClass().getCurrentUserID() == productOwnerId) {
+        if (FirestoreClass().getCurrentUserID() == mProductOwnerId) {
             btn_add_to_cart.visibility = View.GONE
         } else {
             btn_add_to_cart.visibility = View.VISIBLE
@@ -145,6 +145,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
         val addToCart = CartItem(
             FirestoreClass().getCurrentUserID(),
+            mProductOwnerId,
             mProductId,
             mProductDetails.title,
             mProductDetails.price,

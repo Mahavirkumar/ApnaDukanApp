@@ -11,6 +11,7 @@ import com.developer.mk.apnadukan.ui.ui.activities.*
 import com.developer.mk.apnadukan.ui.ui.fragments.DashboardFragment
 import com.developer.mk.apnadukan.ui.ui.fragments.OrdersFragment
 import com.developer.mk.apnadukan.ui.ui.fragments.ProductsFragment
+import com.developer.mk.apnadukan.ui.ui.fragments.SoldProductsFragment
 import com.developer.mk.apnadukan.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -759,9 +760,33 @@ class FirestoreClass {
      * @param activity Base class.
      * @param cartList List of cart items.
      */
-    fun updateAllDetails(activity: CheckoutActivity, cartList: ArrayList<CartItem>) {
+    fun updateAllDetails(activity: CheckoutActivity, cartList: ArrayList<CartItem>, order: Order) {
+
 
         val writeBatch = mFireStore.batch()
+        // Prepare the sold product details
+        for (cart in cartList) {
+
+            val soldProduct = SoldProduct(
+                // Here the user id will be of product owner.
+                cart.product_owner_id,
+                cart.title,
+                cart.price,
+                cart.cart_quantity,
+                cart.image,
+                order.title,
+                order.order_datetime,
+                order.sub_total_amount,
+                order.shipping_charge,
+                order.total_amount,
+                order.address
+            )
+
+            val documentReference = mFireStore.collection(Constants.SOLD_PRODUCTS)
+                .document()
+            writeBatch.set(documentReference, soldProduct)
+
+        }
 
         // Here we will update the product stock in the products collection based to cart quantity.
         for (cart in cartList) {
@@ -787,14 +812,17 @@ class FirestoreClass {
 
         writeBatch.commit().addOnSuccessListener {
 
-            // Finally after performing all the operation notify the user with the success result.
             activity.allDetailsUpdatedSuccessfully()
 
         }.addOnFailureListener { e ->
             // Here call a function of base activity for transferring the result to it.
             activity.hideProgressDialog()
 
-            Log.e(activity.javaClass.simpleName, "Error while updating all the details after order placed.", e)
+            Log.e(
+                activity.javaClass.simpleName,
+                "Error while updating all the details after order placed.",
+                e
+            )
         }
     }
 
@@ -825,6 +853,46 @@ class FirestoreClass {
                 fragment.hideProgressDialog()
 
                 Log.e(fragment.javaClass.simpleName, "Error while getting the orders list.", e)
+            }
+    }
+
+    /**
+     * A function to get the list of sold products from the cloud firestore.
+     *
+     *  @param fragment Base class
+     */
+    fun getSoldProductsList(fragment: SoldProductsFragment) {
+        // The collection name for SOLD PRODUCTS
+        mFireStore.collection(Constants.SOLD_PRODUCTS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                // Here we get the list of sold products in the form of documents.
+                Log.e(fragment.javaClass.simpleName, document.documents.toString())
+
+                // Here we have created a new instance for Sold Products ArrayList.
+                val list: ArrayList<SoldProduct> = ArrayList()
+
+                // A for loop as per the list of documents to convert them into Sold Products ArrayList.
+                for (i in document.documents) {
+
+                    val soldProduct = i.toObject(SoldProduct::class.java)!!
+                    soldProduct.id = i.id
+
+                    list.add(soldProduct)
+                }
+
+                fragment.successSoldProductsList(list)
+            }
+            .addOnFailureListener { e ->
+                // Hide the progress dialog if there is any error.
+                fragment.hideProgressDialog()
+
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    "Error while getting the list of sold products.",
+                    e
+                )
             }
     }
 

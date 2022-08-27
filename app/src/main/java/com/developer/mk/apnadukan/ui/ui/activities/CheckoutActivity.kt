@@ -22,6 +22,7 @@ class CheckoutActivity : BaseActivity() {
 
     private lateinit var mProductsList: ArrayList<Product>
     private lateinit var mCartItemsList: ArrayList<CartItem>
+    private lateinit var mOrderDetails: Order
 
     private var mSubTotal: Double = 0.0
     private var mTotalAmount: Double = 0.0
@@ -169,7 +170,7 @@ class CheckoutActivity : BaseActivity() {
     private fun placeAnOrder() {
         showProgressDialog(resources.getString(R.string.please_wait))
 
-        val order = Order(
+        mOrderDetails= Order(
             FirestoreClass().getCurrentUserID(),
             mCartItemsList,
             mAddressDetails!!,
@@ -181,11 +182,11 @@ class CheckoutActivity : BaseActivity() {
         )
 
 
-        FirestoreClass().placeOrder(this@CheckoutActivity, order)
+        FirestoreClass().placeOrder(this@CheckoutActivity, mOrderDetails)
 
     }
     fun orderPlacedSuccess() {
-        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemsList)
+        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemsList,mOrderDetails)
     }
     /**
      * A function to notify the success result after updating all the required details.
