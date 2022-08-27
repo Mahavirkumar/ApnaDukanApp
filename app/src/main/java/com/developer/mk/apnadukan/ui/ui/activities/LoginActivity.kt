@@ -32,11 +32,10 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        // Click event assigned to Forgot Password text.
         tv_forgot_password.setOnClickListener(this)
-        // Click event assigned to Login button.
+
         btn_login.setOnClickListener(this)
-        // Click event assigned to Register text.
+
         tv_register.setOnClickListener(this)
 
     }

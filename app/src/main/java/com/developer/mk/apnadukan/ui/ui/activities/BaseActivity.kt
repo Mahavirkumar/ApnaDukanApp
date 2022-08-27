@@ -64,7 +64,6 @@ open class BaseActivity : AppCompatActivity() {
         mProgressDialog.setCancelable(false)
         mProgressDialog.setCanceledOnTouchOutside(false)
 
-        //Start the dialog and display it on screen.
         mProgressDialog.show()
     }
 

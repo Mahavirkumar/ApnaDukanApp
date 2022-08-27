@@ -179,6 +179,7 @@ class CheckoutActivity : BaseActivity() {
             mSubTotal.toString(),
             "100.0", // The Shipping Charge is fixed as $10 for now in our case.
             mTotalAmount.toString(),
+            System.currentTimeMillis()
         )
 
 

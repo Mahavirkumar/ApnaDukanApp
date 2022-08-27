@@ -107,7 +107,6 @@ class FirestoreClass {
 
                     }
                 }
-                // END
             }
             .addOnFailureListener { e ->
                 // Hide the progress dialog if there is any error. And print the error in log.
@@ -147,7 +146,6 @@ class FirestoreClass {
                         activity.userProfileUpdateSuccess()
                     }
                 }
-                // END
             }
             .addOnFailureListener { e ->
 
@@ -505,7 +503,6 @@ class FirestoreClass {
                 } else {
                     activity.hideProgressDialog()
                 }
-                // END
             }
             .addOnFailureListener { e ->
                 // Hide the progress dialog if there is an error.
